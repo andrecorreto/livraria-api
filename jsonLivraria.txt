@@ -1,0 +1,26 @@
+
+// Json Livro   /////////////////////////////////////
+
+{
+    "titulo" : "O nome do livro é: 1984",
+    "dataDeLancamento" : "1965-10-07",
+    "numeroDePaginas" : "178",
+    "autor" : {
+        "nome" : "George Owen",
+        "email" : "george@com.br",
+        "dataNascimento" : "1995-12-25",
+        "curriculo" : "Escreveu muitos livros"
+    }
+}
+
+
+// Json Autor  ////////////////////////////////////
+
+{
+    "nome" : "George Owen",
+    "email" : "george@com.br",
+    "dataNascimento" : "1995-12-25",
+    "curriculo" : "Escreveu muitos livros"
+}
+
+///////////////////////////////////////////////////

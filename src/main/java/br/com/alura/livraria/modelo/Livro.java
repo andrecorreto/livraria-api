@@ -17,6 +17,6 @@ public class Livro {
 	private String titulo;
 	private LocalDate dataDeLancamento;
 	private int numeroDePaginas;
-	private String nomeAutor;
+	private Autor autor;
 	
 }

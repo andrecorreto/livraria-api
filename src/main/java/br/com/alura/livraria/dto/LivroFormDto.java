@@ -23,6 +23,6 @@ public class LivroFormDto {
 	@Min(100)
 	private int numeroDePaginas;
 	
-	@NotBlank
-	private String nomeAutor;
+	@NotNull
+	private AutorFormDto autor;
 }
