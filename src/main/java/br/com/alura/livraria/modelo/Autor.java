@@ -2,6 +2,7 @@ package br.com.alura.livraria.modelo;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +31,7 @@ public class Autor {
 	private Long id;
 	private String nome;
 	private String email;
+	@Column(name = "data_de_nascimento")
 	private LocalDate dataNascimento;
 	private String curriculo;
 }
