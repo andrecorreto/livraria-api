@@ -1,6 +1,6 @@
 package br.com.alura.livraria.controller;
 
-import java.util.List;
+import java.util.List; 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import br.com.alura.livraria.service.LivroService;
 @RestController
 @RequestMapping("/livros")
 public class LivroController {
-	@Autowired
+	@Autowired			// Instancia um objeto LivroService
 	private LivroService service;	
 
 	@GetMapping

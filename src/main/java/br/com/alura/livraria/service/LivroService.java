@@ -14,12 +14,14 @@ public class LivroService {
 	private List<Livro> livros = new ArrayList<>();
 	private ModelMapper modelMapper = new ModelMapper();
 
+
 	public List<LivroDto> listar() {
 		return livros
 				.stream()
 				.map(l -> modelMapper.map(l, LivroDto.class))
 				.collect(Collectors.toList());
 	}
+	
 	
 	public void cadastrar(LivroFormDto dto) {
 		Livro livro = modelMapper.map(dto, Livro.class);

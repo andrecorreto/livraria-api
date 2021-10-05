@@ -1,5 +1,5 @@
 
-// Json Livro   /////////////////////////////////////
+// Json para LivroFormDto //////////////////////////////
 
 {
     "titulo" : "O nome do livro é: 1984",
@@ -8,18 +8,18 @@
     "autor" : {
         "nome" : "George Owen",
         "email" : "george@com.br",
-        "dataNascimento" : "1995-12-25",
+        "dataNascimento" : "1938-12-25",
         "curriculo" : "Escreveu muitos livros"
     }
 }
 
 
-// Json Autor  ////////////////////////////////////
+// Json Autor  para AutorFormDto  ////////////////////
 
 {
     "nome" : "George Owen",
     "email" : "george@com.br",
-    "dataNascimento" : "1995-12-25",
+    "dataNascimento" : "1938-12-25",
     "curriculo" : "Escreveu muitos livros"
 }
 
