@@ -15,7 +15,7 @@ import br.com.alura.livraria.service.LivroService;
 @RestController
 @RequestMapping("/livros")
 public class LivroController {
-	@Autowired			// Instancia um objeto LivroService
+	@Autowired
 	private LivroService service;	
 
 	@GetMapping
