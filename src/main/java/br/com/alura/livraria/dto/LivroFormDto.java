@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 public class LivroFormDto {
 	@NotBlank
-	@Size(min = 10)
+	@Size(min = 10 , max = 150)
 	private String titulo;
 	
 	@PastOrPresent

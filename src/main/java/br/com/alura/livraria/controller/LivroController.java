@@ -1,6 +1,7 @@
 package br.com.alura.livraria.controller;
 
 import java.net.URI;
+import java.net.http.HttpTimeoutException;
 
 import javax.validation.Valid;
 
@@ -34,6 +35,7 @@ public class LivroController {
 	@PostMapping
 	public ResponseEntity<LivroDto> cadastrar(@RequestBody @Valid 
 			LivroFormDto dto, UriComponentsBuilder uriBuilder) {
+		
 		LivroDto livroDto = service.cadastrar(dto);
 		
 		URI uri = uriBuilder
