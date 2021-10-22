@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,12 @@ public class TratamentoDeErros {
 				ex.getClass().toString(),
 				ex.getMessage(),
 				req.getRequestURI());
+
+	}
+	
+	@ExceptionHandler(EntityNotFoundException.class)
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	public void tratrarErro404() {
 
 	}
 }
