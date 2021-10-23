@@ -16,7 +16,8 @@ import br.com.alura.livraria.repository.AutorRepository;
 public class AutorService {
 	
 	@Autowired
-	private AutorRepository autorRepository;	
+	private AutorRepository autorRepository;
+
 	private ModelMapper modelMapper = new ModelMapper();
 
 	public Page<AutorDto> listar(Pageable paginacao) {		

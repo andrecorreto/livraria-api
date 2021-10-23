@@ -4,11 +4,15 @@ import java.time.LocalDate;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AutorFormDto {
 	@NotBlank
 	private String nome;
@@ -18,6 +22,4 @@ public class AutorFormDto {
 	private LocalDate dataNascimento;
 	@NotBlank
 	private String curriculo;
-
-
 }

@@ -1,5 +1,7 @@
 package br.com.alura.livraria.service;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +24,7 @@ public class LivroService {
 	
 	@Autowired
 	private AutorRepository autorRepository;
-	
+
 	private ModelMapper modelMapper = new ModelMapper();
 
 	public Page<LivroDto> listar(Pageable paginacao) {
@@ -34,15 +36,24 @@ public class LivroService {
 	@Transactional
 	public LivroDto cadastrar(LivroFormDto dto) {
 		Long idAutor = dto.getAutorId();
-		Autor autor = autorRepository.getById(idAutor);
 		
-		Livro livro = modelMapper.map(dto, Livro.class);
-		livro.setId(null);
-		livro.setAutor(autor);
-		
-		livroRepository.save(livro);	
+		try {
+			Autor autor = autorRepository.getById(idAutor);
+			Livro livro = modelMapper.map(dto, Livro.class);
+			livro.setId(null);
+			livro.setAutor(autor);
 			
-		return modelMapper.map(livro, LivroDto.class);
+			livroRepository.save(livro);	
+			return modelMapper.map(livro, LivroDto.class);
+			
+		} catch (EntityNotFoundException e) {
+			throw new IllegalArgumentException("Usuário inexistente");
+		}
+
+		
+		
+			
+
 	}
 	
 	
