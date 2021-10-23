@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.alura.livraria.dto.LivroDto;
 import br.com.alura.livraria.dto.LivroFormDto;
+import br.com.alura.livraria.modelo.Autor;
 import br.com.alura.livraria.modelo.Livro;
+import br.com.alura.livraria.repository.AutorRepository;
 import br.com.alura.livraria.repository.LivroRepository;
 
 @Service
@@ -17,6 +19,10 @@ public class LivroService {
 	
 	@Autowired
 	private LivroRepository livroRepository;
+	
+	@Autowired
+	private AutorRepository autorRepository;
+	
 	private ModelMapper modelMapper = new ModelMapper();
 
 	public Page<LivroDto> listar(Pageable paginacao) {
@@ -27,8 +33,13 @@ public class LivroService {
 	
 	@Transactional
 	public LivroDto cadastrar(LivroFormDto dto) {
+		Long idAutor = dto.getAutorId();
+		Autor autor = autorRepository.getById(idAutor);
+		
 		Livro livro = modelMapper.map(dto, Livro.class);
 		livro.setId(null);
+		livro.setAutor(autor);
+		
 		livroRepository.save(livro);	
 			
 		return modelMapper.map(livro, LivroDto.class);
