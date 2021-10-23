@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -41,6 +43,7 @@ public class TratamentoDeErros {
 
 	}
 	
+	//@ExceptionHandler(IllegalArgumentException.class)
 	@ExceptionHandler(EntityNotFoundException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public void tratrarErro404() {
