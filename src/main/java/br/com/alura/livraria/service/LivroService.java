@@ -1,5 +1,7 @@
 package br.com.alura.livraria.service;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -45,7 +47,8 @@ public class LivroService {
 			return modelMapper.map(livro, LivroDto.class);
 					
 		} catch (DataIntegrityViolationException e) {	
-		//} catch (EntityNotFoundException e) {
+			throw new IllegalArgumentException("Usuário inexistente");
+		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException("Usuário inexistente");
 		}
 	}

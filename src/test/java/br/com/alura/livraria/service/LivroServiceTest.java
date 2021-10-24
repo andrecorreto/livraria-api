@@ -59,7 +59,6 @@ class LivroServiceTest {
 		.when(autorRepository.getById(formDto.getAutorId()))
 		.thenThrow(EntityNotFoundException.class);
 	
-		assertThrows(IllegalArgumentException.class, () -> service.cadastrar(formDto));
-			
+		assertThrows(IllegalArgumentException.class, () -> service.cadastrar(formDto));		
 	}
 }
