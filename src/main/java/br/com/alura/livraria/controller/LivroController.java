@@ -1,7 +1,6 @@
 package br.com.alura.livraria.controller;
 
 import java.net.URI;
-import java.net.http.HttpTimeoutException;
 
 import javax.validation.Valid;
 
@@ -20,19 +19,24 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.alura.livraria.dto.LivroDto;
 import br.com.alura.livraria.dto.LivroFormDto;
 import br.com.alura.livraria.service.LivroService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/livros")
+@Api(tags = "Livro" )
 public class LivroController {
 	@Autowired
 	private LivroService service;	
 
 	@GetMapping
+	@ApiOperation("Listar livros")
 	public Page<LivroDto> listar(@PageableDefault(size = 10) Pageable paginacao) {
 		return service.listar(paginacao);
 	}
 	
 	@PostMapping
+	@ApiOperation("Cadastrar novo livro")
 	public ResponseEntity<LivroDto> cadastrar(@RequestBody @Valid 
 			LivroFormDto dto, UriComponentsBuilder uriBuilder) {
 		
