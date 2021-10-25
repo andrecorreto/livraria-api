@@ -1,5 +1,7 @@
 package br.com.alura.livraria.service;
 
+import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -7,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.alura.livraria.dto.AtualizacaoAutorFormDto;
 import br.com.alura.livraria.dto.AutorDto;
 import br.com.alura.livraria.dto.AutorFormDto;
 import br.com.alura.livraria.modelo.Autor;
@@ -33,6 +36,16 @@ public class AutorService {
 		return modelMapper.map(autor, AutorDto.class);
 		
 	}
-	
-	
+
+	@Transactional
+	public AutorDto atualizar(@Valid AtualizacaoAutorFormDto dto) {
+		Autor autor = autorRepository.getById(dto.getId());
+		autor.atualizaInformacoes(
+				dto.getNome(),
+				dto.getEmail(),
+				dto.getDataNascimento(),
+				dto.getCurriculo());
+		return modelMapper.map(autor, AutorDto.class);
+	}
+
 }

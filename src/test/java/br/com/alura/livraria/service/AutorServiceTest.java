@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import br.com.alura.livraria.dto.AtualizacaoAutorFormDto;
 import br.com.alura.livraria.dto.AutorDto;
 import br.com.alura.livraria.dto.AutorFormDto;
 import br.com.alura.livraria.dto.LivroDto;
@@ -32,9 +33,29 @@ class AutorServiceTest {
 				"Curriculo bem grande");
 	}
 	
+	public AtualizacaoAutorFormDto criarUmAtualizacaoAutorFormDto() {
+		return new AtualizacaoAutorFormDto(
+				1l,
+				"Belo Autor", 
+				"autor@email.com", 
+				LocalDate.now(),
+				"Curriculo bem grande");
+	}
+	
 	@Test
 	void deveriaCadastrarUmAutor() {
 		AutorFormDto formDto = criarUmAutorFormDto();
+
+		AutorDto dto = service.cadastrar(formDto);
+			
+		assertEquals(formDto.getNome(), dto.getNome());
+		assertEquals(formDto.getEmail(), dto.getEmail());
+		assertEquals(formDto.getDataNascimento(), dto.getDataNascimento());
+	}
+	
+	@Test
+	void deveriaAlterarUmAutor() {
+		AtualizacaoAutorFormDto formDto = criarUmAtualizacaoAutorFormDto();
 
 		AutorDto dto = service.cadastrar(formDto);
 			
