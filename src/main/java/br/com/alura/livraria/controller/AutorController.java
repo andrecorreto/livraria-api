@@ -34,7 +34,8 @@ public class AutorController {
 	
 	@PostMapping
 	public ResponseEntity<AutorDto> cadastrar(@RequestBody @Valid 
-			AutorFormDto dto, UriComponentsBuilder uriBuilder) {
+			AutorFormDto dto, 
+			UriComponentsBuilder uriBuilder) {
 			
 		AutorDto autorDto = service.cadastrar(dto);
 		

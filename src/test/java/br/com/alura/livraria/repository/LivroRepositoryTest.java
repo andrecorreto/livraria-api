@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,12 +117,13 @@ class LivroRepositoryTest {
 		em.persist(livro7);
 	}
 	
-	@Test
-	void deveriaRetornarRelatorioLivrariaPorAutor() {
-		
+	@BeforeEach   //para ser executado antes de cada metodo
+	public void inicializar() {
 		popularBancoDeDados();
-		
-		
+	}
+	
+	@Test
+	void deveriaRetornarRelatorioLivrariaPorAutor() {	
 		List<ItemLivrariaDto> relatorio = repository.relatorioLivrariaPorAutor();
 		Assertions.assertThat(relatorio)
 		.hasSize(5)
