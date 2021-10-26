@@ -1,6 +1,5 @@
 package br.com.alura.livraria.infra;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,8 +7,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -43,10 +41,12 @@ public class TratamentoDeErros {
 
 	}
 	
-	//@ExceptionHandler(IllegalArgumentException.class)
-	@ExceptionHandler(EntityNotFoundException.class)
+	@ExceptionHandler({
+		EntityNotFoundException.class, 
+		IllegalArgumentException.class,
+		EmptyResultDataAccessException.class})
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public void tratrarErro404() {
-
+	public String tratrarErro404() {
+		return "Objeto não encontrado";
 	}
 }

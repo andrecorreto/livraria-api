@@ -1,6 +1,8 @@
 package br.com.alura.livraria.service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.alura.livraria.dto.AtualizacaoAutorFormDto;
 import br.com.alura.livraria.dto.AutorDto;
 import br.com.alura.livraria.dto.AutorFormDto;
+import br.com.alura.livraria.dto.DetalhesAutorDto;
 import br.com.alura.livraria.modelo.Autor;
 import br.com.alura.livraria.repository.AutorRepository;
 
@@ -46,6 +49,18 @@ public class AutorService {
 				dto.getDataNascimento(),
 				dto.getCurriculo());
 		return modelMapper.map(autor, AutorDto.class);
+	}
+
+	@Transactional
+	public void remover(@NotNull Long id) {
+		autorRepository.deleteById(id);
+	}
+
+	public DetalhesAutorDto detalhar(@NotNull Long id) {
+		Autor autor = autorRepository
+				.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Autor inexistente"));
+		return modelMapper.map(autor, DetalhesAutorDto.class);
 	}
 
 }
