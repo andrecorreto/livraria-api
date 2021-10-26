@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -68,8 +69,12 @@ public class AutorController {
 	@DeleteMapping("/{id}")
 	@ApiOperation("Deletar um autor")
 	public ResponseEntity<AutorDto> remover(@PathVariable @NotNull Long id) {
-		service.remover(id);		
-		return ResponseEntity.noContent().build();
+		try {
+			service.remover(id);		
+			return ResponseEntity.noContent().build();
+		} catch (DataIntegrityViolationException ex) {
+			throw new IllegalArgumentException("Autor com livro publicado não pode ser deletado");
+		}
 	}
 	
 	@GetMapping("/{id}")

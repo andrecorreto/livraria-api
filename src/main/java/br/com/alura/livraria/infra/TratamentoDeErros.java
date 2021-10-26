@@ -43,10 +43,13 @@ public class TratamentoDeErros {
 	
 	@ExceptionHandler({
 		EntityNotFoundException.class, 
-		IllegalArgumentException.class,
 		EmptyResultDataAccessException.class})
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public String tratrarErro404() {
-		return "Objeto não encontrado";
+	public Erro500Dto tratrarErro404(Exception ex, HttpServletRequest req) {
+		return new Erro500Dto(
+				LocalDateTime.now(),
+				ex.getClass().toString(),
+				ex.getMessage(),
+				req.getRequestURI());
 	}
 }
