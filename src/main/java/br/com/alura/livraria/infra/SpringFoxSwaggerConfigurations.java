@@ -2,10 +2,13 @@ package br.com.alura.livraria.infra;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Arrays;
 import java.util.Collections;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.builders.RequestParameterBuilder;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -21,6 +24,13 @@ public class SpringFoxSwaggerConfigurations {
           .apis(RequestHandlerSelectors.any())              
           .paths(PathSelectors.any())                        
           .build()
+          .globalRequestParameters(Arrays.asList(
+        		  new RequestParameterBuilder()
+        		  .name("Authorization")
+        		  .description("Bearer Token")
+        		  .required(false)
+        		  .in("header")
+        		  .build()))
           .apiInfo(apiInfo());                                           
     }
     
