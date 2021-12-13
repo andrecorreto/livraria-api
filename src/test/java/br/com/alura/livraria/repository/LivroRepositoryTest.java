@@ -1,5 +1,6 @@
 package br.com.alura.livraria.repository;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -131,11 +132,11 @@ class LivroRepositoryTest {
 				ItemLivrariaDto::getQuantidadeDeLivros,
 				ItemLivrariaDto::getPercentual)
 		.containsExactlyInAnyOrder(
-				Assertions.tuple("André da Silva", 2l, 0.285714),
-				Assertions.tuple("Fernanda Nogueira", 2l, 0.285714),
-				Assertions.tuple("Juliana Carvalho", 1l, 0.142857),
-				Assertions.tuple("Rita de Assis", 1l, 0.142857),
-				Assertions.tuple("Rodrigo de Souza", 1l, 0.142857));
+				Assertions.tuple("André da Silva", 2l, 0.2857142857142857),
+				Assertions.tuple("Fernanda Nogueira", 2l, 0.2857142857142857),
+				Assertions.tuple("Juliana Carvalho", 1l, 0.14285714285714285),
+				Assertions.tuple("Rita de Assis", 1l, 0.14285714285714285),
+				Assertions.tuple("Rodrigo de Souza", 1l, 0.14285714285714285));
 	}
 
 }
